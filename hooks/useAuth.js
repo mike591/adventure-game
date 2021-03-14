@@ -4,8 +4,6 @@ import "firebase/auth";
 
 const AuthContext = React.createContext();
 
-const protectedRoutes = [];
-
 const useAuthProvider = () => {
   const [user, setUser] = React.useState();
   const [isLoadingAuth, setIsLoadingAuth] = React.useState(false);
@@ -35,11 +33,24 @@ const useAuthProvider = () => {
     return () => unsubscribe();
   }, []);
 
-  return { user, isLoadingAuth };
+  React.useEffect(() => {
+    handleSetLoading(true);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(false);
+      }
+      handleSetLoading(false);
+    });
+  }, []);
+
+  return { user, isLoadingAuth, setUser };
 };
 
 export const AuthProvider = ({ children }) => {
   const authProvider = useAuthProvider();
+
   return (
     <AuthContext.Provider value={authProvider}>{children}</AuthContext.Provider>
   );

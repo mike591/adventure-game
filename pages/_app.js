@@ -1,7 +1,12 @@
 import React from "react";
 import firebase from "firebase/app";
 import "normalize.css";
-import { AuthProvider } from "../hooks/useAuth";
+import { AuthProvider, useAuth } from "hooks/useAuth";
+import { useRouter } from "next/router";
+import Home from "pages/index";
+import Loader from "components/Loader";
+
+const protectedRoutes = ["/Game"];
 
 const firebaseConfig = {
   apiKey: "AIzaSyDA2gTkBQzekuYqiTmSHBMYvo5RvZNiv4A",
@@ -16,10 +21,30 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const MyApp = ({ Component, pageProps }) => {
+const AuthWrappedComponents = ({ Component, pageProps }) => {
+  const router = useRouter();
+  const { user, isLoadingAuth } = useAuth();
+
+  const notLoggedIn = !user;
+  const accessingProtectedRoutes = protectedRoutes.includes(router.pathname);
+  let ComponentToRender = Component;
+
+  if (notLoggedIn && accessingProtectedRoutes) {
+    ComponentToRender = Home;
+  }
+
+  return (
+    <>
+      <Loader isLoading={isLoadingAuth} />
+      <ComponentToRender {...pageProps} />
+    </>
+  );
+};
+
+const MyApp = (props) => {
   return (
     <AuthProvider>
-      <Component {...pageProps} />
+      <AuthWrappedComponents {...props} />
     </AuthProvider>
   );
 };

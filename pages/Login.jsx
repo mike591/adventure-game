@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../styles/Login.module.scss";
+import style from "styles/Login.module.scss";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebaseui/dist/firebaseui.css";
@@ -14,13 +14,15 @@ const Login = () => {
         firebaseui.auth.AuthUI.getInstance() ||
         new firebaseui.auth.AuthUI(firebase.auth());
 
-      ui.start(loginRef.current, {
-        signInOptions: [
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        ],
-        signInSuccessUrl: "/Test",
-      });
+      if (loginRef.current) {
+        ui.start(loginRef.current, {
+          signInOptions: [
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          ],
+          signInSuccessUrl: "/Game",
+        });
+      }
     };
 
     init();
