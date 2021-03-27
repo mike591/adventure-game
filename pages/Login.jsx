@@ -21,6 +21,7 @@ const Login = () => {
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
           ],
           signInSuccessUrl: "/Game",
+          signInFlow: "popup",
         });
       }
     };

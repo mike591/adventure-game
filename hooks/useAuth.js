@@ -30,19 +30,8 @@ const useAuthProvider = () => {
       }
       handleSetLoading(false);
     });
-    return () => unsubscribe();
-  }, []);
 
-  React.useEffect(() => {
-    handleSetLoading(true);
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(false);
-      }
-      handleSetLoading(false);
-    });
+    return unsubscribe;
   }, []);
 
   return { user, isLoadingAuth, setUser };
