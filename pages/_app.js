@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "firebase/app";
 import "normalize.css";
+import "styles/main.scss";
 import { AuthProvider } from "hooks/useAuth";
 import AuthWrappedComponents from "components/AuthWrappedComponents";
 

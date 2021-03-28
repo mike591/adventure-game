@@ -3,6 +3,7 @@ import { useAuth } from "hooks/useAuth";
 import { useRouter } from "next/router";
 import Home from "pages/index";
 import Loader from "components/Loader";
+import Nav from "components/Nav";
 
 const protectedRoutes = ["/Game"];
 const publicRoutes = ["/Test"];
@@ -27,6 +28,7 @@ const AuthWrappedComponents = ({ Component, pageProps }) => {
   return (
     <>
       <Loader isLoading={isLoadingAuth} />
+      <Nav />
       <ComponentToRender {...pageProps} />
     </>
   );
