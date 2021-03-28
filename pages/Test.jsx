@@ -1,15 +1,19 @@
 import React from "react";
-import { generateMaze, displayMaze } from "utils/maze";
+import pageStyles from "styles/Page.module.scss";
+import generateMaze from "generate-maze";
+import Maze from "components/Maze";
 
 const Test = () => {
   const [maze, setMaze] = React.useState();
 
+  console.log({ maze });
+
   return (
-    <div>
+    <div className={pageStyles.Page}>
       <h1>This is a test page</h1>
       <div>
-        <pre>{maze && displayMaze(maze)}</pre>
-        <button onClick={() => setMaze(generateMaze({ x: 10, y: 10 }))}>
+        {maze && <Maze maze={maze} />}
+        <button onClick={() => setMaze(generateMaze(10, 10, false))}>
           Generate Maze
         </button>
       </div>

@@ -20,6 +20,18 @@ const useAuthProvider = () => {
     }
   };
 
+  const logout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        setUser();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   React.useEffect(() => {
     handleSetLoading(true);
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -34,7 +46,7 @@ const useAuthProvider = () => {
     return unsubscribe;
   }, []);
 
-  return { user, isLoadingAuth, setUser };
+  return { user, isLoadingAuth, logout, setUser };
 };
 
 export const AuthProvider = ({ children }) => {
