@@ -3,10 +3,10 @@ import styles from "styles/Maze.module.scss";
 
 const generateStyles = (cell) => {
   const styles = {
-    borderRightColor: !cell.right && "black",
-    borderLeftColor: !cell.left && "black",
-    borderBottomColor: !cell.bottom && "black",
-    borderTopColor: !cell.top && "black",
+    borderRightColor: cell.right && "black",
+    borderLeftColor: cell.left && "black",
+    borderBottomColor: cell.bottom && "black",
+    borderTopColor: cell.top && "black",
   };
   return styles;
 };

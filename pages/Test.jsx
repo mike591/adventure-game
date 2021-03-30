@@ -11,7 +11,7 @@ const Test = () => {
       <h1>This is a test page</h1>
       <div>
         {maze && <Maze maze={maze} />}
-        <button onClick={() => setMaze(generateMaze(10, 10, false))}>
+        <button onClick={() => setMaze(generateMaze(10, 10, true))}>
           Generate Maze
         </button>
       </div>
