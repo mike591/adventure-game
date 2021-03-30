@@ -6,8 +6,6 @@ import Maze from "components/Maze";
 const Test = () => {
   const [maze, setMaze] = React.useState();
 
-  console.log({ maze });
-
   return (
     <div className={pageStyles.Page}>
       <h1>This is a test page</h1>
