@@ -1,29 +1,36 @@
 import React from "react";
 import styles from "styles/Maze.module.scss";
+import classnames from "classnames";
 
-const generateStyles = (cell) => {
-  const styles = {
-    borderRightColor: cell.right && "black",
-    borderLeftColor: cell.left && "black",
-    borderBottomColor: cell.bottom && "black",
-    borderTopColor: cell.top && "black",
-  };
-  return styles;
-};
-
-const Maze = ({ maze }) => {
+const Maze = ({ maze, player = {} }) => {
   return (
     <div className={styles.Maze}>
       {maze?.map((row, rowIdx) => {
         return (
           <div key={rowIdx} className={styles.row}>
             {row.map((cell, cellIdx) => {
+              const playAtCell = player.x === cell.x && player.y === cell.y;
               return (
                 <div
                   key={cellIdx}
-                  className={styles.cell}
-                  style={generateStyles(cell)}
-                ></div>
+                  className={classnames({
+                    [styles.cell]: true,
+                    [styles["top-border"]]: cell.top,
+                    [styles["left-border"]]: cell.left,
+                    [styles["right-border"]]: cell.right,
+                    [styles["bottom-border"]]: cell.bottom,
+                  })}
+                >
+                  {playAtCell && (
+                    <div
+                      style={{
+                        backgroundColor: "red",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    ></div>
+                  )}
+                </div>
               );
             })}
           </div>

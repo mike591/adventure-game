@@ -5,7 +5,7 @@ const Loader = ({ isLoading }) => {
   if (isLoading) {
     return (
       <div className={styles.Loader}>
-        <div className={styles.Loader__animation}></div>
+        <div className={styles.animation}></div>
       </div>
     );
   } else {

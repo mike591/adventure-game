@@ -13,7 +13,7 @@
   z-index: 1;
 }
 
-.Loader__animation {
+.animation {
   display: inline-block;
   transform: translateZ(1px);
 
@@ -25,11 +25,11 @@
     margin: 8px;
     border-radius: 50%;
     background: $orange500;
-    animation: Loader__animation 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    animation: animation 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }
 }
 
-@keyframes Loader__animation {
+@keyframes animation {
   0%,
   100% {
     animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
