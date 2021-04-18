@@ -1,5 +1,5 @@
-import React from "react";
-import pageStyles from "styles/Page.module.scss";
+import React from 'react';
+import pageStyles from 'styles/Page.module.scss';
 
 const Game = () => {
   return (

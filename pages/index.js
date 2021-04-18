@@ -1,13 +1,13 @@
-import React from "react";
-import styles from "styles/Home.module.scss";
-import pageStyles from "styles/Page.module.scss";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
+import React from 'react';
+import styles from 'styles/Home.module.scss';
+import pageStyles from 'styles/Page.module.scss';
 
 const Home = () => {
   const router = useRouter();
 
   const handleStart = () => {
-    router.push("/Login");
+    router.push('/Login');
   };
 
   return (

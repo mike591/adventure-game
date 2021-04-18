@@ -1,5 +1,5 @@
-import React from "react";
-import { useFrame } from "@react-three/fiber";
+import React from 'react';
+import { useFrame } from '@react-three/fiber';
 
 const Box = (props) => {
   const mesh = React.useRef();
@@ -18,7 +18,7 @@ const Box = (props) => {
       onPointerOut={() => setHover(false)}
     >
       <boxGeometry args={[1, 2, 3]} />
-      <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
     </mesh>
   );
 };
