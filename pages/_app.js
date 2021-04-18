@@ -4,6 +4,7 @@ import "normalize.css";
 import "styles/main.scss";
 import { AuthProvider } from "hooks/useAuth";
 import AuthWrappedComponents from "components/AuthWrappedComponents";
+import { RecoilRoot } from "recoil";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDA2gTkBQzekuYqiTmSHBMYvo5RvZNiv4A",
@@ -20,9 +21,11 @@ if (!firebase.apps.length) {
 
 const MyApp = (props) => {
   return (
-    <AuthProvider>
-      <AuthWrappedComponents {...props} />
-    </AuthProvider>
+    <RecoilRoot>
+      <AuthProvider>
+        <AuthWrappedComponents {...props} />
+      </AuthProvider>
+    </RecoilRoot>
   );
 };
 
