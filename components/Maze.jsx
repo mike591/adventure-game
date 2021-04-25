@@ -1,8 +1,11 @@
-import React from "react";
-import styles from "styles/Maze.module.scss";
-import classnames from "classnames";
+import classnames from 'classnames';
+import { getIcon } from 'hooks/usePlayer';
+import React from 'react';
+import styles from 'styles/Maze.module.scss';
 
 const Maze = ({ maze, player = {} }) => {
+  const Icon = getIcon(player);
+
   return (
     <div className={styles.Maze}>
       {maze?.map((row, rowIdx) => {
@@ -15,21 +18,13 @@ const Maze = ({ maze, player = {} }) => {
                   key={cellIdx}
                   className={classnames({
                     [styles.cell]: true,
-                    [styles["top-border"]]: cell.top,
-                    [styles["left-border"]]: cell.left,
-                    [styles["right-border"]]: cell.right,
-                    [styles["bottom-border"]]: cell.bottom,
+                    [styles['top-border']]: cell.top,
+                    [styles['left-border']]: cell.left,
+                    [styles['right-border']]: cell.right,
+                    [styles['bottom-border']]: cell.bottom,
                   })}
                 >
-                  {playAtCell && (
-                    <div
-                      style={{
-                        backgroundColor: "red",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    ></div>
-                  )}
+                  {playAtCell && <Icon color="green" />}
                 </div>
               );
             })}

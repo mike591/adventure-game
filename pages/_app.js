@@ -22,9 +22,7 @@ if (!firebase.apps.length) {
 const MyApp = (props) => {
   return (
     <RecoilRoot>
-      <AuthProvider>
-        <AuthWrappedComponents {...props} />
-      </AuthProvider>
+      <AuthWrappedComponents {...props} />
     </RecoilRoot>
   );
 };
