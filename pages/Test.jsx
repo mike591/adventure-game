@@ -12,9 +12,7 @@ const Test = () => {
   const [maze, setMaze] = React.useState();
   const { player, updatePlayer } = usePlayer();
 
-  console.log({ maze });
-
-  const handleMovement = (changes) => {
+  const handleMove = (changes) => {
     return () => {
       const { x = 0, y = 0 } = changes;
       const newX = player.x + x;
@@ -56,6 +54,8 @@ const Test = () => {
     };
   };
 
+  const handleTurn = () => {};
+
   return (
     <div className={pageStyles.Page}>
       <h1>This is a test page</h1>
@@ -67,10 +67,10 @@ const Test = () => {
       </div>
       <Controls
         disabled={!maze}
-        handleUp={handleMovement({ y: -1 })}
-        handleDown={handleMovement({ y: 1 })}
-        handleLeft={handleMovement({ x: -1 })}
-        handleRight={handleMovement({ x: 1 })}
+        handleUp={handleMove({ y: -1 })}
+        handleDown={handleMove({ y: 1 })}
+        handleLeft={handleMove({ x: -1 })}
+        handleRight={handleMove({ x: 1 })}
       />
       <div className={mazeViewerStyles.MazeViewer}>
         <Canvas>
