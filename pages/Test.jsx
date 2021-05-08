@@ -1,5 +1,5 @@
 import generateMaze from 'generate-maze';
-import { usePlayer } from 'hooks/usePlayer';
+import { usePlayer, TOP, BOTTOM, LEFT, RIGHT } from 'hooks/usePlayer';
 import React from 'react';
 import mazeViewerStyles from 'styles/MazeViewer.module.scss';
 import pageStyles from 'styles/Page.module.scss';
@@ -12,49 +12,52 @@ const Test = () => {
   const [maze, setMaze] = React.useState();
   const { player, updatePlayer } = usePlayer();
 
-  const handleMove = (changes) => {
-    return () => {
-      const { x = 0, y = 0 } = changes;
-      const newX = player.x + x;
-      const newY = player.y + y;
-
-      const currentCell = maze[player.y][player.x];
-      const isMovingRight = x > 0;
-      const canMoveRight = !currentCell.right;
-
-      const isMovingLeft = x < 0;
-      const canMoveLeft = !currentCell.left;
-
-      const isMovingDown = y > 0;
-      const canMoveDown = !currentCell.bottom;
-
-      const isMovingUp = y < 0;
-      const canMoveUp = !currentCell.top;
-
-      let canMove = true;
-      if (isMovingRight) {
-        canMove = canMoveRight;
-      }
-      if (isMovingLeft) {
-        canMove = canMoveLeft;
-      }
-      if (isMovingDown) {
-        canMove = canMoveDown;
-      }
-      if (isMovingUp) {
-        canMove = canMoveUp;
-      }
-
-      if (canMove) {
-        updatePlayer({
-          x: newX < 0 ? 0 : newX,
-          y: newY < 0 ? 0 : newY,
-        });
-      }
+  const handleMove = (isForward = true) => {
+    const { direction } = player;
+    const movementMap = {
+      [TOP]: { change: -1, axis: 'y', backDirection: BOTTOM },
+      [BOTTOM]: { change: 1, axis: 'y', backDirection: TOP },
+      [LEFT]: { change: -1, axis: 'x', backDirection: RIGHT },
+      [RIGHT]: { change: 1, axis: 'x', backDirection: LEFT },
     };
+
+    const changes = {};
+    const { change, axis, backDirection } = movementMap[direction];
+    const mapCell = maze[player.y][player.x];
+    if (isForward) {
+      const canMove = !mapCell[player.direction];
+      changes[axis] = canMove ? player[axis] + change : player[axis];
+    } else {
+      const canMove = !mapCell[backDirection];
+      changes[axis] = canMove ? player[axis] - change : player[axis];
+    }
+
+    const maxAxis = {
+      x: maze[0].length,
+      y: maze.length,
+    };
+    if (changes[axis] < 0) {
+      changes[axis] = 0;
+    } else if (changes[axis] > maxAxis[axis] - 1) {
+      changes[axis] = maxAxis[axis] - 1;
+    }
+
+    updatePlayer(changes);
   };
 
-  const handleTurn = () => {};
+  const handleTurn = (isLeft = true) => {
+    const directions = [TOP, RIGHT, BOTTOM, LEFT];
+
+    const playerDirectionIndex = directions.indexOf(player.direction);
+    let newDirectionIndex = 0;
+    if (isLeft) {
+      newDirectionIndex =
+        (playerDirectionIndex + directions.length - 1) % directions.length;
+    } else {
+      newDirectionIndex = (playerDirectionIndex + 1) % directions.length;
+    }
+    updatePlayer({ direction: directions[newDirectionIndex] });
+  };
 
   return (
     <div className={pageStyles.Page}>
@@ -67,10 +70,10 @@ const Test = () => {
       </div>
       <Controls
         disabled={!maze}
-        handleUp={handleMove({ y: -1 })}
-        handleDown={handleMove({ y: 1 })}
-        handleLeft={handleMove({ x: -1 })}
-        handleRight={handleMove({ x: 1 })}
+        handleUp={() => handleMove(true)}
+        handleDown={() => handleMove(false)}
+        handleLeft={() => handleTurn(true)}
+        handleRight={() => handleTurn(false)}
       />
       <div className={mazeViewerStyles.MazeViewer}>
         <Canvas>

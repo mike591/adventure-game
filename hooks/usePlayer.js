@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   FaChevronCircleDown,
   FaChevronCircleLeft,
@@ -7,10 +6,10 @@ import {
 } from 'react-icons/fa';
 import { atom, useRecoilState } from 'recoil';
 
-export const TOP = 'TOP';
-export const BOTTOM = 'BOTTOM';
-export const LEFT = 'LEFT';
-export const RIGHT = 'RIGHT';
+export const TOP = 'top';
+export const BOTTOM = 'bottom';
+export const LEFT = 'left';
+export const RIGHT = 'right';
 
 const playerState = atom({
   key: 'playerState',
@@ -22,10 +21,10 @@ const playerState = atom({
 });
 
 export const iconMap = {
-  TOP: FaChevronCircleUp,
-  BOTTOM: FaChevronCircleDown,
-  LEFT: FaChevronCircleLeft,
-  RIGHT: FaChevronCircleRight,
+  [TOP]: FaChevronCircleUp,
+  [BOTTOM]: FaChevronCircleDown,
+  [LEFT]: FaChevronCircleLeft,
+  [RIGHT]: FaChevronCircleRight,
 };
 
 export const getIcon = (player) => {

@@ -16,15 +16,19 @@ const Controls = ({
     (e) => {
       switch (e.key) {
         case 'ArrowUp':
+          e.preventDefault();
           handleUp();
           break;
         case 'ArrowDown':
+          e.preventDefault();
           handleDown();
           break;
         case 'ArrowLeft':
+          e.preventDefault();
           handleLeft();
           break;
         case 'ArrowRight':
+          e.preventDefault();
           handleRight();
           break;
         default:
