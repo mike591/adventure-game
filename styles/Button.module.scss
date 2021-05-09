@@ -1,0 +1,15 @@
+@import './colors.scss';
+
+.button {
+  width: 10rem;
+  height: 3rem;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.primary {
+  background-color: $green500;
+  color: $blue400;
+}

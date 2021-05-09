@@ -1,7 +1,10 @@
+import classnames from 'classnames';
 import { useRouter } from 'next/router';
 import React from 'react';
-import styles from 'styles/Home.module.scss';
+import buttonStyles from 'styles/Button.module.scss';
+import homeStyles from 'styles/Home.module.scss';
 import pageStyles from 'styles/Page.module.scss';
+import textStyles from 'styles/Text.module.scss';
 
 const Home = () => {
   const router = useRouter();
@@ -11,10 +14,14 @@ const Home = () => {
   };
 
   return (
-    <div className={(styles.Home, pageStyles.Page)}>
-      <h1 className={styles.title}>This is the adventure game!</h1>
-      <p className={styles.description}>Using Next JS</p>
-      <button onClick={handleStart}>Start</button>
+    <div className={classnames(homeStyles.Home, pageStyles.Page)}>
+      <div className={textStyles.title}>Multiplayer maze game!</div>
+      <button
+        className={classnames(buttonStyles.button, buttonStyles.primary)}
+        onClick={handleStart}
+      >
+        Start
+      </button>
     </div>
   );
 };

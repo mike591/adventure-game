@@ -5,7 +5,7 @@ import React from 'react';
 import Loader from 'components/Loader';
 import Nav from 'components/Nav';
 
-const protectedRoutes = ['/Game'];
+const protectedRoutes = ['/Setup'];
 const publicRoutes = ['/Test'];
 
 const AuthWrappedComponents = ({ Component, pageProps }) => {
@@ -25,7 +25,7 @@ const AuthWrappedComponents = ({ Component, pageProps }) => {
 
   if (signedIn && !accessingProtectedRoutes && !accessingPublicRoutes) {
     console.log(2);
-    router.push('/Game');
+    router.push('/Setup');
   }
 
   return (
