@@ -1,23 +1,35 @@
 import classnames from 'classnames';
 import React from 'react';
+import Modal from 'react-modal';
 import buttonStyles from 'styles/Button.module.scss';
 import inputStyles from 'styles/Input.module.scss';
 import pageStyles from 'styles/Page.module.scss';
 import setupStyles from 'styles/Setup.module.scss';
+import CreatGameModalContent from 'components/CreateGameModalContent';
 
 const Setup = () => {
+  const [isCreatingGame, setIsCreatingGame] = React.useState(false);
   const [roomName, setRoomName] = React.useState('');
-
-  const handleCreateRoom = () => {
-    console.log('hi');
-  };
 
   return (
     <div className={classnames(setupStyles.Setup, pageStyles.Page)}>
+      {isCreatingGame && (
+        <Modal
+          isOpen={isCreatingGame}
+          onRequestClose={() => setIsCreatingGame(false)}
+          ariaHideApp={false}
+          className={setupStyles.modalContent}
+        >
+          <CreatGameModalContent />
+        </Modal>
+      )}
       <br />
       <div className={setupStyles.row}>
         <div>Create a new room</div>
-        <button className={buttonStyles.button} onClick={handleCreateRoom}>
+        <button
+          className={buttonStyles.button}
+          onClick={() => setIsCreatingGame(true)}
+        >
           Create
         </button>
       </div>

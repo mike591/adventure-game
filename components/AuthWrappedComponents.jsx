@@ -5,7 +5,7 @@ import React from 'react';
 import Loader from 'components/Loader';
 import Nav from 'components/Nav';
 
-const protectedRoutes = ['/Setup'];
+const protectedRoutes = ['/Setup', '/Game'];
 const publicRoutes = ['/Test'];
 
 const AuthWrappedComponents = ({ Component, pageProps }) => {
@@ -17,14 +17,11 @@ const AuthWrappedComponents = ({ Component, pageProps }) => {
   const accessingPublicRoutes = publicRoutes.includes(router.pathname);
   let ComponentToRender = Component;
 
-  // TODO: double check this logic for public routes and not logged in.
   if (!signedIn && accessingProtectedRoutes) {
-    console.log(1);
     ComponentToRender = Home;
   }
 
   if (signedIn && !accessingProtectedRoutes && !accessingPublicRoutes) {
-    console.log(2);
     router.push('/Setup');
   }
 
