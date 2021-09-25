@@ -1,0 +1,28 @@
+@import './colors.scss';
+
+.CreateGameModalContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.inputWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  flex-grow: 1;
+}
+
+.error {
+  font-style: italic;
+  color: $red500;
+}
+
+.button {
+  margin-top: auto;
+  width: 100%;
+}
