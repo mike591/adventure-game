@@ -1,4 +1,5 @@
 import generateMaze from 'generate-maze';
+import { useAuth } from 'hooks/useAuth';
 import { usePlayer, TOP, BOTTOM, LEFT, RIGHT } from 'hooks/usePlayer';
 import React from 'react';
 import mazeViewerStyles from 'styles/MazeViewer.module.scss';
@@ -11,6 +12,7 @@ import { Canvas } from '@react-three/fiber';
 const Test = () => {
   const [maze, setMaze] = React.useState();
   const { player, updatePlayer } = usePlayer();
+  const { user } = useAuth();
 
   const handleMove = (isForward = true) => {
     const { direction } = player;
@@ -58,6 +60,8 @@ const Test = () => {
     }
     updatePlayer({ direction: directions[newDirectionIndex] });
   };
+
+  console.log({ maze, player, user });
 
   return (
     <div className={pageStyles.Page}>

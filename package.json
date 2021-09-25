@@ -21,7 +21,8 @@
     "react-icons": "^4.2.0",
     "recoil": "^0.2.0",
     "sass": "^1.32.10",
-    "three": "^0.127.0"
+    "three": "^0.127.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^2.0.2",

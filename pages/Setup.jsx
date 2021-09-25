@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import useGame from 'hooks/useGame';
 import React from 'react';
 import buttonStyles from 'styles/Button.module.scss';
 import inputStyles from 'styles/Input.module.scss';
@@ -6,7 +7,7 @@ import pageStyles from 'styles/Page.module.scss';
 import setupStyles from 'styles/Setup.module.scss';
 
 const Setup = () => {
-  const [roomName, setRoomName] = React.useState('');
+  const [roomKey, setRoomKey] = React.useState('');
 
   const handleCreateRoom = () => {
     console.log('hi');
@@ -31,13 +32,13 @@ const Setup = () => {
         <input
           className={inputStyles.input}
           type="text"
-          onChange={(e) => setRoomName(e.currentTarget.value)}
-          value={roomName}
+          onChange={(e) => setRoomKey(e.currentTarget.value)}
+          value={roomKey}
           placeholder="..."
         />
       </div>
       <br />
-      <button className={buttonStyles.button} disabled={!roomName}>
+      <button className={buttonStyles.button} disabled={!roomKey}>
         Enter
       </button>
     </div>
