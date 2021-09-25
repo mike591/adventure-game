@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import useGame from 'hooks/useGame';
 import React from 'react';
 import Modal from 'react-modal';
 import buttonStyles from 'styles/Button.module.scss';

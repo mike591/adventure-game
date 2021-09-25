@@ -1,15 +1,15 @@
-import React from "react";
-import style from "styles/Login.module.scss";
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebaseui/dist/firebaseui.css";
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebaseui/dist/firebaseui.css';
+import React from 'react';
+import style from 'styles/Login.module.scss';
 
 const Login = () => {
   const loginRef = React.createRef();
 
   React.useEffect(() => {
     const init = async () => {
-      const firebaseui = await import("firebaseui");
+      const firebaseui = await import('firebaseui');
       const ui =
         firebaseui.auth.AuthUI.getInstance() ||
         new firebaseui.auth.AuthUI(firebase.auth());
@@ -20,8 +20,8 @@ const Login = () => {
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
           ],
-          signInSuccessUrl: "/Game",
-          signInFlow: "popup",
+          signInSuccessUrl: '/Setup',
+          signInFlow: 'popup',
         });
       }
     };
